@@ -26,5 +26,5 @@
 - フォーマッター
   - Prettier
 - 画面
-![localhost_3000_](https://user-images.githubusercontent.com/23553796/174414050-4360226d-b628-4543-8fbf-d86103e3ace6.png)
-![localhost_3000_detail_0000000024](https://user-images.githubusercontent.com/23553796/174414053-5931159a-6604-4403-bbfe-241c802c2d27.png)
+![home](https://user-images.githubusercontent.com/23553796/177038869-1d51481d-37ed-4532-98b0-8979496450f6.png)
+![detail](https://user-images.githubusercontent.com/23553796/177038873-2f5954a1-01fa-4789-abb8-74ab89445600.png)
