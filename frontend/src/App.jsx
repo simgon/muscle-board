@@ -14,11 +14,11 @@ export default function App() {
           component={MuscleDetail}
           element={<MuscleDetail isCreate={true} />}
         />
-        <Route
+        {/* <Route
           path="/detail/:no"
           component={MuscleDetail}
           element={<MuscleDetail isCreate={false} />}
-        />
+        /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

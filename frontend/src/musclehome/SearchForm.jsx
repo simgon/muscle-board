@@ -9,7 +9,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 export default function SearchForm(props) {
-  const { setTrainingData, setTrainingGraphData, setOpen } = props;
+  const { setTrainingData, setTrainingGraphData, setShowLoading, setShowDetail, setSelectNo } =
+    props;
 
   const [trainingNm, setTrainingNm] = useState('');
   const [trainingDateFrom, setTrainingDateFrom] = useState('');
@@ -23,13 +24,15 @@ export default function SearchForm(props) {
   // 新規ボタン
   const handleNewClick = () => {
     // 新規タブで詳細画面を開く
-    window.open('/detail', '_blank');
+    //window.open('/detail', '_blank');
+    setShowDetail(true);
+    setSelectNo(null);
   };
 
   // 検索ボタン
   const handleSearch = async () => {
     // 読込モーダル表示
-    setOpen(true);
+    setShowLoading(true);
 
     // パラメータ
     const params = new URLSearchParams();
@@ -47,8 +50,8 @@ export default function SearchForm(props) {
       setTrainingGraphData(resGraph.data.results);
 
       // 読込モーダル非表示
-      //setTimeout(() => setOpen(false), 500);
-      setOpen(false);
+      //setTimeout(() => setShowLoading(false), 500);
+      setShowLoading(false);
     } catch (e) {
       console.log(e);
     }

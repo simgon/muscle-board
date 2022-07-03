@@ -12,7 +12,7 @@ import TrainingTable from './TrainingTable';
 import Copyright from '../components/Copyright';
 
 export default function Dashboard(props) {
-  const { rows, graphData } = props;
+  const { rows, graphData, setShowDetail, setSelectNo } = props;
 
   const toMMdd = (date) => `${date.slice(4, 6)}/${date.slice(6, 8)}`;
 
@@ -66,7 +66,7 @@ export default function Dashboard(props) {
             </Grid>
             {/* トレーニング一覧 */}
             <Grid item xs={12}>
-              <TrainingTable rows={rows} />
+              <TrainingTable rows={rows} setShowDetail={setShowDetail} setSelectNo={setSelectNo} />
             </Grid>
           </Grid>
           <Copyright sx={{ pt: 4 }} />

@@ -29,7 +29,7 @@ import { deepOrange } from '@mui/material/colors';
 import Divider from '@mui/material/Divider';
 
 export default function MuscleDetail(props) {
-  const { isCreate } = props;
+  const { setShowDetail, selectNo } = props;
 
   const [open, setOpen] = useState(false);
   const [trainingNm, setTrainingNm] = useState('');
@@ -118,11 +118,11 @@ export default function MuscleDetail(props) {
   })();
 
   // URLパラメータ
-  const urlParams = useParams();
+  //const urlParams = useParams();
 
   // 初回処理
   useEffect(() => {
-    switch (isCreate) {
+    switch (selectNo === null) {
       // 新規
       case true:
         let rows = dtlRows.slice(0, 0);
@@ -141,7 +141,7 @@ export default function MuscleDetail(props) {
           // 詳細情報取得
           const postTrainingDtl = async () => {
             const params = new URLSearchParams();
-            params.append('trainingNo', urlParams.no);
+            params.append('trainingNo', selectNo);
             let res = await axios.post('/training_dtl', params);
             setDtlRows(res.data.results);
             setTrainingNm(res.data.results[0].TRAINING_NM);
@@ -183,7 +183,7 @@ export default function MuscleDetail(props) {
 
     // パラメータ
     const params = new URLSearchParams();
-    params.append('trainingNo', urlParams.no);
+    params.append('trainingNo', selectNo);
     params.append('trainingNm', trainingNm);
     params.append('trainingDate', functions.toDateDB(trainingDateBegin, 'yyyyMMdd'));
     params.append('trainingDateBegin', functions.toDateDB(trainingDateBegin, 'yyyyMMddHHmmss'));
@@ -192,22 +192,24 @@ export default function MuscleDetail(props) {
 
     try {
       // 更新処理
-      let res = await axios.post(isCreate ? '/insert' : '/update', params);
+      let res = await axios.post(selectNo === null ? '/insert' : '/update', params);
       if (res.data.results.result === 'OK') {
-        switch (isCreate) {
+        switch (selectNo === null) {
           // 新規
           case true:
             // 画面読込
-            window.location.replace(`/detail/${res.data.results.no}`);
+            //window.location.replace(`/detail/${res.data.results.no}`);
             break;
           // 更新
           case false:
             // 読込モーダル非表示
-            setTimeout(() => setOpen(false), 500);
+            //setTimeout(() => setOpen(false), 500);
             break;
           default:
             break;
         }
+
+        setShowDetail(false);
       } else {
         alert('サーバ エラー');
         setOpen(false);
@@ -265,7 +267,7 @@ export default function MuscleDetail(props) {
       <CssBaseline />
 
       {/* ヘッダー */}
-      <Header />
+      <Header setShowDetail={setShowDetail} />
 
       {/* 上部ツールバー */}
       <Container maxWidth="xl" sx={{ mt: 2 }}>

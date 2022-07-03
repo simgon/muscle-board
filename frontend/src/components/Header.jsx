@@ -5,7 +5,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
-export default function Header() {
+import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
+
+export default function Header(props) {
+  const { setShowDetail } = props;
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -15,6 +20,19 @@ export default function Header() {
               Muscle Board
             </Link>
           </Typography>
+
+          <div style={{ flexGrow: 1 }}></div>
+          <Box style={{ alignItems: 'end', display: 'flex' }}>
+            {setShowDetail !== undefined && (
+              <Button
+                onClick={() => setShowDetail(false)}
+                variant="contained"
+                sx={{ mt: 1, mb: 1 }}
+              >
+                <CloseIcon />
+              </Button>
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>

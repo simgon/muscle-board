@@ -192,7 +192,7 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function TrainingTable(props) {
-  const { rows } = props;
+  const { rows, setShowDetail, setSelectNo } = props;
 
   const [order, setOrder] = React.useState('desc');
   const [orderBy, setOrderBy] = React.useState('' /*'TRAINING_DATE'*/);
@@ -357,7 +357,13 @@ export default function TrainingTable(props) {
                       <TableCell align="right">{row.TRAINING_TIME}</TableCell>
                       <TableCell align="right">{row.TOTAL_REP_QTY}</TableCell>
                       <TableCell align="right">
-                        <Link href={'/detail/' + row.TRAINING_NO} target="_blank">
+                        {/* <Link href={'/detail/' + row.TRAINING_NO} target="_blank"> */}
+                        <Link
+                          onClick={() => {
+                            setShowDetail(true);
+                            setSelectNo(row.TRAINING_NO);
+                          }}
+                        >
                           <EditIcon />
                         </Link>
                       </TableCell>
